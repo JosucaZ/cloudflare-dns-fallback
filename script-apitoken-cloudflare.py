@@ -2,6 +2,8 @@ import os
 import socket
 import requests
 
+#by josucazz
+
 ZONE_NAME = os.environ.get("ZONE_NAME")
 RECORD_NAME = os.environ.get("RECORD_NAME")
 IP_PIHOLE = os.environ.get("IP_PIHOLE")
