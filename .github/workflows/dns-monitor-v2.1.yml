@@ -1,4 +1,4 @@
-name: Monitoramento do Pi-hole V2.1
+name: Monitoramento do Pi-hole
 
 on:
   schedule:
@@ -10,25 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout do código
-      uses: actions/checkout@v3
+      - name: Checkout do código
+        uses: actions/checkout@v3
 
-    - name: Instalar dependências
-      run: sudo apt-get update && sudo apt-get install -y python3
+      - name: Instalar dependências
+        run: sudo apt-get update && sudo apt-get install -y python3
 
-    - name: Executar script de monitoramento DNS
-      env:
-        CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-        ZONE_NAME: ${{ secrets.ZONE_NAME }}
-        RECORD_NAME: ${{ secrets.RECORD_NAME }}
-        IP_PIHOLE: ${{ secrets.IP_PIHOLE }}
-        IP_BACKUP: ${{ secrets.IP_BACKUP }}
-
-    - name: Teste variável CF_API_TOKEN
-      run: echo "Token presente? ${CF_API_TOKEN:+Sim 👍 / Não ❌}"
-      env:
-        CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-
-
-      run: python3 script-apitoken-cloudflare.py
-
+      - name: Executar script de monitoramento DNS
+        env:
+          ZONE_NAME: ${{ secrets.ZONE_NAME }}
+          RECORD_NAME: ${{ secrets.RECORD_NAME }}
+          IP_PIHOLE: ${{ secrets.IP_PIHOLE }}
+          IP_BACKUP: ${{ secrets.IP_BACKUP }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: python3 script-apitoken-cloudflare.py
