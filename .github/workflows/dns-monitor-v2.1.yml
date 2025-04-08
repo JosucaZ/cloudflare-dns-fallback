@@ -1,4 +1,4 @@
-name: Monitoramento do Pi-hole
+name: Monitoramento do Pi-hole V2.1
 
 on:
   schedule:
