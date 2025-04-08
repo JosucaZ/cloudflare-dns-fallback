@@ -18,9 +18,10 @@ jobs:
 
     - name: Executar script de monitoramento DNS
       env:
+        CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
         ZONE_NAME: ${{ secrets.ZONE_NAME }}
         RECORD_NAME: ${{ secrets.RECORD_NAME }}
         IP_PIHOLE: ${{ secrets.IP_PIHOLE }}
         IP_BACKUP: ${{ secrets.IP_BACKUP }}
-        API_TOKEN: ${{ secrets.CF_API_TOKEN }}
       run: python3 script-apitoken-cloudflare.py
+
