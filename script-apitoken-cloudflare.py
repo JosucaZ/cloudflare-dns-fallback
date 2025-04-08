@@ -6,7 +6,7 @@ ZONE_NAME = os.environ["ZONE_NAME"]
 RECORD_NAME = os.environ["RECORD_NAME"]
 IP_PIHOLE = os.environ["IP_PIHOLE"]
 IP_BACKUP = os.environ["IP_BACKUP"]
-API_TOKEN = os.environ["CF_API_TOKEN"]
+CF_API_TOKEN = os.environ["CF_API_TOKEN"]
 
 def pihole_respondendo():
     try:
@@ -20,7 +20,7 @@ def pihole_respondendo():
 
 def get_zone_id():
     r = requests.get("https://api.cloudflare.com/client/v4/zones", headers={
-        "Authorization": f"Bearer {API_TOKEN}",
+        "Authorization": f"Bearer {CF_API_TOKEN}",
         "Content-Type": "application/json"
     }, params={"name": ZONE_NAME})
 
@@ -33,7 +33,7 @@ def get_zone_id():
 
 def get_record_id(zone_id):
     r = requests.get(f"https://api.cloudflare.com/client/v4/zones/{zone_id}/dns_records", headers={
-        "Authorization": f"Bearer {API_TOKEN}",
+        "Authorization": f"Bearer {CF_API_TOKEN}",
         "Content-Type": "application/json"
     }, params={"type": "A", "name": RECORD_NAME})
 
@@ -48,7 +48,7 @@ def atualizar_dns(zone_id, record, novo_ip):
     r = requests.put(
         f"https://api.cloudflare.com/client/v4/zones/{zone_id}/dns_records/{record['id']}",
         headers={
-            "Authorization": f"Bearer {API_TOKEN}",
+            "Authorization": f"Bearer {CF_API_TOKEN}",
             "Content-Type": "application/json"
         },
         json={
