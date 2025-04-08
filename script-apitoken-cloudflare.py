@@ -2,11 +2,11 @@ import os
 import socket
 import requests
 
-ZONE_NAME = os.environ["ZONE_NAME"]
-RECORD_NAME = os.environ["RECORD_NAME"]
-IP_PIHOLE = os.environ["IP_PIHOLE"]
-IP_BACKUP = os.environ["IP_BACKUP"]
-CF_API_TOKEN = os.environ["CF_API_TOKEN"]
+ZONE_NAME = os.environ.get("ZONE_NAME")
+RECORD_NAME = os.environ.get("RECORD_NAME")
+IP_PIHOLE = os.environ.get("IP_PIHOLE")
+IP_BACKUP = os.environ.get("IP_BACKUP")
+CF_API_TOKEN = os.environ.get("CF_API_TOKEN")
 
 def pihole_respondendo():
     try:
